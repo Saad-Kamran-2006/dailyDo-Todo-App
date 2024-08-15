@@ -15,6 +15,9 @@ RUN apt-get update && apt-get install -y \
 # Install Poetry
 RUN pip install poetry
 
+# Install Mypy
+# RUN pip install mypy
+
 # Copy the current directory contents into the container at /code
 COPY . /code/
 
