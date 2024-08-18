@@ -72,7 +72,9 @@ async def login(
     access_token = create_access_token({"sub": form_data.username}, expire_time)
     refresh_expire_time = timedelta(days=7)
     refresh_token = create_refresh_token({"sub": user.email}, refresh_expire_time)
-    return Token(access_token=access_token, token_type="bearer", refresh_token=refresh_token)
+    return Token(
+        access_token=access_token, token_type="bearer", refresh_token=refresh_token
+    )
 
 
 @app.post("/token/refresh")

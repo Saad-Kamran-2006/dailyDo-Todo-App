@@ -11,7 +11,7 @@ from datetime import timedelta, datetime, timezone
 
 SECRET_KEY = "27a83a07fc206251c01667547e78bfd4097338c88da85b8885c6755de570d636"
 ALGORITHYM = "HS256"
-EXPIRY_TIME = 30
+EXPIRY_TIME = 120
 
 
 oauth_scheme = OAuth2PasswordBearer(tokenUrl="/token")
