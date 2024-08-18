@@ -1,11 +1,21 @@
 import React from "react";
 import { Todo } from "../../types";
 import Task from "./Task";
+import { cookies } from "next/headers";
 
 const TodoTable = async () => {
-  const response = await fetch("http://localhost:8000/todos/", {
-    cache: "no-store",
-  });
+  const cookie = cookies().get("AccessToken");
+  // console.log(cookie!.value);
+  const response = await fetch(
+    "https://immensely-innocent-warthog.ngrok-free.app/todos/",
+    {
+      cache: "no-store",
+      method: "GET",
+      headers: {
+        Authorization: `bearer ${cookie!.value}`,
+      },
+    }
+  );
   const data = await response.json();
   const todo_List: Todo[] = data.sort((a: Todo, b: Todo) => a.id - b.id);
   return (

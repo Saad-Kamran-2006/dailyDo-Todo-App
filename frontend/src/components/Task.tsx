@@ -22,6 +22,7 @@ const Task = ({ task }: { task: Todo }) => {
     }
   };
   const handleDelete = async () => {
+    // console.log("Delete id from Task.tsx", task.id)
     const response = await delete_todo(task.id);
     if (response.status === "success") {
       toast.success(response.message);

@@ -2,11 +2,11 @@ import { Modal } from "@/components/Modal";
 import TodoTable from "@/components/TodoTable";
 import { Button } from "@/components/ui/button";
 
-export default function Home() {
+export default function Dashboard() {
   return (
     <main className="max-w-5xl mx-auto mt-8">
       {/* Add Task Section */}
-      {/* <section>
+      <section>
         <Modal title="Add New Task" Adding={true}>
           <Button
             className="w-full bg-teal-600 text-white px-2 py-1 uppercase text-lg"
@@ -15,11 +15,11 @@ export default function Home() {
             Add Task
           </Button>
         </Modal>
-      </section> */}
+      </section>
       {/* Todo Table Section */}
-      {/* <section className="mt-4">
+      <section className="mt-4">
         <TodoTable />
-      </section> */}
+      </section>
     </main>
   );
 }
