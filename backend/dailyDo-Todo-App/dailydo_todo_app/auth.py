@@ -9,8 +9,10 @@ from jose import jwt, JWTError
 from datetime import timedelta, datetime, timezone
 
 
-SECRET_KEY = "27a83a07fc206251c01667547e78bfd4097338c88da85b8885c6755de570d636"
-ALGORITHYM = "HS256"
+from dailydo_todo_app import setting
+
+SECRET_KEY = str(setting.SECRET_KEY)
+ALGORITHM = "HS256"
 EXPIRY_TIME = 120
 
 
@@ -60,7 +62,7 @@ def create_access_token(data: dict, expiry_time: timedelta | None):
     else:
         expire = datetime.now(timezone.utc) + timedelta(minutes=15)
     data_to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(data_to_encode, SECRET_KEY, algorithm=ALGORITHYM)
+    encoded_jwt = jwt.encode(data_to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
 
@@ -71,7 +73,7 @@ def create_refresh_token(data: dict, expiry_time: timedelta | None):
     else:
         expire = datetime.now(timezone.utc) + timedelta(minutes=15)
     data_to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(data_to_encode, SECRET_KEY, algorithm=ALGORITHYM)
+    encoded_jwt = jwt.encode(data_to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
 
@@ -85,7 +87,7 @@ def current_user(
         headers={"www-Authenticate": "Bearer"},
     )
     try:
-        payload = jwt.decode(token, SECRET_KEY, ALGORITHYM)
+        payload = jwt.decode(token, SECRET_KEY, ALGORITHM)
         username: str | None = payload.get("sub")
 
         if username is None:
@@ -110,7 +112,7 @@ def validate_refresh_token(
         headers={"www-Authenticate": "Bearer"},
     )
     try:
-        payload = jwt.decode(token, SECRET_KEY, ALGORITHYM)
+        payload = jwt.decode(token, SECRET_KEY, ALGORITHM)
         email: str | None = payload.get("sub")
 
         if email is None:

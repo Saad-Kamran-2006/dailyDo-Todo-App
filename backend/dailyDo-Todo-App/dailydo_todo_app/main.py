@@ -42,12 +42,6 @@ app: FastAPI = FastAPI(
     lifespan=lifespan,
     title="dailyDo-Todo-App",
     version="1.0.0",
-    servers=[
-        {
-            "url": "https://immensely-innocent-warthog.ngrok-free.app",
-            "description": "Development Server",
-        }
-    ],
 )
 
 app.include_router(router=user_router)
